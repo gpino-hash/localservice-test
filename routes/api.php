@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/current", [\App\Weather\Infrastructure\WeatherController::class, "show"]);
+Route::get("/zip-code/{code}", [\App\LocalService\Infrastructure\LocalServiceController::class, "show"]);
