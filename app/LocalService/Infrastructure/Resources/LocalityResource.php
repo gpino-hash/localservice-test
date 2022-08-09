@@ -19,12 +19,12 @@ class LocalityResource extends JsonResource
     {
         return [
             "zip_code" => $this[0]->zip_code,
-            "locality" => $this[0]->city,
+            "locality" => strtoupper($this[0]->city),
             "federal_entity" => $this[0]->federalEntity,
             "settlements" => $this[0]->settlement,
             "municipality" => [
                 "key" => $this[1]->id,
-                "name" => $this[1]->name,
+                "name" => strtoupper($this[1]->name),
             ]
         ];
     }
