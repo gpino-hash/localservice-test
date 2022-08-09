@@ -19,11 +19,11 @@ class LocalServiceRecord
 
     /**
      * @param string $code
-     * @return Locality|LocalityBuilder|Builder|null
+     * @return array
      * @throws RequestException
      * @throws Throwable
      */
-    public function search(string $code): Locality|LocalityBuilder|null|Builder
+    public function search(string $code): array
     {
         $this->dto->setZipCode($code);
         $localService = $this->repository->search($this->dto);

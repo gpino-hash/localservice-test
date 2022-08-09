@@ -4,8 +4,8 @@ namespace App\LocalService\Infrastructure;
 
 use App\LocalService\Domain\LocalServiceRepository;
 use App\LocalService\Domain\ZipCodeDto;
-use App\LocalService\Infrastructure\Model\Builder\LocalityBuilder;
 use App\LocalService\Infrastructure\Model\Locality;
+use App\LocalService\Infrastructure\Model\Municipality;
 
 class DefaultLocalServiceRepository implements LocalServiceRepository
 {
@@ -13,8 +13,14 @@ class DefaultLocalServiceRepository implements LocalServiceRepository
     /**
      * @inheritDoc
      */
-    public function search(ZipCodeDto $zipCodeDto): LocalityBuilder|Locality|null
+    public function search(ZipCodeDto $zipCodeDto): array
     {
-        return Locality::query()->getLocationByZipCode($zipCodeDto->getZipCode());
+        $locality = Locality::query()->getLocationByZipCode($zipCodeDto->getZipCode());
+        $municipality = Municipality::query()->getMunicipality($locality->municipality_id, $locality->federal_entity_id);
+
+        return [
+            $locality,
+            $municipality
+        ];
     }
 }

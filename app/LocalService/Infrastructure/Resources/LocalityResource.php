@@ -18,14 +18,14 @@ class LocalityResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            "zip_code" => $this->zip_code,
-            "locality" => $this->city,
-            "federal_entity" => $this->federalEntity,
-            "settlements" => $this->settlement,
-            /*"municipality" => [
-                "key" => $this->municipality_id,
-                "name" => $this->name,
-            ]*/
+            "zip_code" => $this[0]->zip_code,
+            "locality" => $this[0]->city,
+            "federal_entity" => $this[0]->federalEntity,
+            "settlements" => $this[0]->settlement,
+            "municipality" => [
+                "key" => $this[1]->id,
+                "name" => $this[1]->name,
+            ]
         ];
     }
 }
