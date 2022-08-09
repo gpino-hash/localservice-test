@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string("city")->nullable();
             $table->string("federal_entity_id");
             $table->string("municipality_id");
-            $table->foreign("federal_entity_id")->references("id")->on("federal_entities");
-            $table->foreign("municipality_id")->references("id")->on("municipalities");
             $table->timestamps();
         });
     }

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string("id")->index();
             $table->string("name");
             $table->string("federal_entity_id");
-            $table->foreign("federal_entity_id")->references("id")->on("federal_entities");
             $table->timestamps();
         });
     }

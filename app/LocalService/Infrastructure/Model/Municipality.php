@@ -11,8 +11,9 @@ class Municipality extends Model
 
     public $incrementing = false;
 
+    protected $keyType = "string";
+
     protected $fillable = [
-        "id",
         "name",
         "federal_entity_id",
     ];
