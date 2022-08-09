@@ -14,9 +14,9 @@ class LocalityBuilder extends Builder
     public function getLocationByZipCode($code): static|Model|null
     {
         return $this->with(["federalEntity", "settlement"])
-            ->join("municipalities", function($join) {
+            /*->join("municipalities", function($join) {
                 $join->on("municipalities.federal_entity_id", "=", "localities.federal_entity_id")
                     ->on("municipalities.id", "=", "localities.municipality_id");
-            })->where("zip_code", $code)->first();
+            })*/->where("zip_code", $code)->first();
     }
 }

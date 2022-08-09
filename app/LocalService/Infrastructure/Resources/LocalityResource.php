@@ -22,10 +22,10 @@ class LocalityResource extends JsonResource
             "locality" => $this->city,
             "federal_entity" => $this->federalEntity,
             "settlements" => $this->settlement,
-            "municipality" => [
+            /*"municipality" => [
                 "key" => $this->municipality_id,
                 "name" => $this->name,
-            ]
+            ]*/
         ];
     }
 }
