@@ -23,7 +23,7 @@ class SettlementResource extends ResourceCollection
                 "name" => $this->replaceStr($collection->name),
                 "zone_type" => $this->replaceStr($collection->zone_type),
                 "settlement_type" => [
-                    "name" => $collection->settlement_type
+                    "name" => ucfirst($collection->settlement_type),
                 ],
             ];
         }
