@@ -24,7 +24,6 @@ class LocalServiceController extends Controller
             Cache::put($code, new LocalityResource($local));
             return \response()->json(Cache::get($code));
         } catch (\Throwable $exception) {
-            dd($exception);
             Log::error(self::class, [$exception]);
             return response()->json($exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
