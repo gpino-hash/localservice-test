@@ -8,6 +8,7 @@ use JetBrains\PhpStorm\ArrayShape;
 
 class LocalityResource extends JsonResource
 {
+    use ReplaceStr;
     /**
      * Transform the resource into an array.
      *
@@ -18,13 +19,17 @@ class LocalityResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            "zip_code" => $this[0]->zip_code,
-            "locality" => strtoupper($this[0]->city),
-            "federal_entity" => $this[0]->federalEntity,
-            "settlements" => $this[0]->settlement,
+            "zip_code" => (string)substr(str_repeat(0, 5).$this[0]->zip_code, -5),
+            "locality" => empty($this[0]->city) ? "" : $this->replaceStr($this[0]->city),
+            "federal_entity" => [
+                "key" => intval($this[0]->federalEntity->id),
+                "name" => $this->replaceStr($this[0]->federalEntity->name),
+                "code" => null
+            ],
+            "settlements" => new SettlementResource($this[0]->settlement),
             "municipality" => [
-                "key" => $this[1]->id,
-                "name" => strtoupper($this[1]->name),
+                "key" => intval($this[1]->id),
+                "name" => $this->replaceStr($this[1]->name),
             ]
         ];
     }
