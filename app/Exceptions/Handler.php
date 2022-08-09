@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -43,8 +44,16 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
+        $this->renderable(function (\TypeError $e, $request) {
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'error' => 'postal code is incorrect.'
+                ], Response::HTTP_FORBIDDEN);
+            }
+        });
+
         $this->reportable(function (Throwable $e) {
-            //
+
         });
     }
 }

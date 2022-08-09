@@ -14,8 +14,9 @@ class LocalServiceController extends Controller
 
     public function __construct(private readonly LocalServiceRecord $record) {}
 
-    public function show($code): mixed
+    public function show(int $code): \Illuminate\Http\JsonResponse
     {
+
         try {
             if (Cache::has($code)) {
                 return \response()->json(Cache::get($code));
@@ -25,7 +26,7 @@ class LocalServiceController extends Controller
             return \response()->json(Cache::get($code));
         } catch (\Throwable $exception) {
             Log::error(self::class, [$exception]);
-            return response()->json($exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+            return response()->json(["message" => $exception->getMessage()], Response::HTTP_NOT_FOUND);
         }
     }
 }
