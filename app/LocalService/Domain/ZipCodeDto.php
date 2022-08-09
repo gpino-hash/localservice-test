@@ -5,20 +5,20 @@ namespace App\LocalService\Domain;
 final class ZipCodeDto
 {
 
-    private ?string $zipCode;
+    private int $zipCode;
 
     /**
-     * @return string|null
+     * @return int
      */
-    public function getZipCode(): ?string
+    public function getZipCode(): int
     {
         return $this->zipCode;
     }
 
     /**
-     * @param string|null $zipCode
+     * @param int|null $zipCode
      */
-    public function setZipCode(?string $zipCode): void
+    public function setZipCode(?int $zipCode): void
     {
         $this->zipCode = $zipCode;
     }

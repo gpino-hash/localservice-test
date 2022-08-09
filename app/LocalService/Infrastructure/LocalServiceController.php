@@ -14,6 +14,10 @@ class LocalServiceController extends Controller
 
     public function __construct(private readonly LocalServiceRecord $record) {}
 
+    /**
+     * @param int $code
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function show(int $code): \Illuminate\Http\JsonResponse
     {
 
